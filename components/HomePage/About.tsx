@@ -1,7 +1,8 @@
 "use client";
 import { motion, useInView } from "framer-motion";
 import Image from "next/image";
-import { Grid } from "@mui/material";
+import { BookText } from "lucide-react";
+
 import { useEffect, useRef, useState } from "react";
 
 const MotionSection = motion("section");
@@ -92,18 +93,14 @@ export default function About() {
               Chi Siamo
             </h2>
           </motion.div>
-
           {/* Sezione Linea  */}
-
           <motion.div
             initial={{ width: 0, x: "10%" }}
             animate={{ width: "30%", x: 0 }}
             transition={{ duration: 1, ease: "easeIn" }}
             className="w-20 h-1 bg-blue-500 mt-4 mb-6"
           ></motion.div>
-
           {/* Sezione Descrizione  */}
-
           <motion.div
             initial={{ opacity: 0, scale: 0.8 }}
             whileInView={{ opacity: 1, scale: 1 }}
@@ -124,7 +121,6 @@ export default function About() {
               creano nuove opportunità.
             </p>
           </motion.div>
-
           {/* Sezione Numeri  */}
           <div className="mt-8">
             <div className="grid grid-cols-2 gap-6">
@@ -176,6 +172,25 @@ export default function About() {
                 </p>
               </div>
             </div>
+          </div>
+          <div className="mt-8">
+            <motion.div
+              initial={{ width: 0, x: "10%" }}
+              animate={{ width: "100%", x: 0 }}
+              transition={{ duration: 1, ease: "easeIn" }}
+              className="w-30 h-25 bg-blue-500 mt-4 mb-6 flex rounded-lg"
+            >
+              <div>
+                <h2 className="text-xl font-bold tracking-tighter md:text-xl/tight flex items-center gap-4">
+                  <BookText />
+                  Il nostro regolamento
+                </h2>
+                <p className="mt-4 text-muted-foreground md:text-lg">
+                  Scopri i principi e i valori che guidano il nostro lavoro e il
+                  nostro impegno verso l'eccellenza e l'innovazione.
+                </p>
+              </div>
+            </motion.div>
           </div>
         </div>
       </div>
