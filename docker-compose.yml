@@ -1,0 +1,22 @@
+services:
+  aletheialab:
+    build: .
+    container_name: aletheialab
+    ports:
+      - "8080:3000"
+    restart: always
+    networks:
+      - aletheialab-it
+
+  tunnel:
+    image: cloudflare/cloudflared:latest
+    container_name: cf-tunnel
+    restart: always
+    command: tunnel --no-autoupdate run --token ${CF_TOKEN}
+    networks:
+      - aletheialab-it
+
+networks:
+  aletheialab-it:
+    name: aletheialab-it
+    driver: bridge
