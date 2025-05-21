@@ -1,11 +1,11 @@
 "use client"
 import { motion } from "framer-motion";
 
-const MotionSection = motion("section");
+
 
 export default function Hero() {
     return (
-        <MotionSection
+        <motion.section
             id="hero"
             className="w-full py-32 md:py-40 lg:py-48 xl:py-56 relative overflow-hidden bg-background section-transition"
             initial={{ opacity: 0 }}
@@ -15,6 +15,6 @@ export default function Hero() {
             <div>
                 Contenuto Hero
             </div>
-        </MotionSection>
+        </motion.section>
     );
 }
