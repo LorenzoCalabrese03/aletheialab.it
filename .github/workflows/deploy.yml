@@ -1,0 +1,37 @@
+name: Deploy su Server Casalingo (Self-Hosted)
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: self-hosted
+
+    steps:
+      - name: Configura SSH per GitHub
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_ed25519
+          chmod 600 ~/.ssh/id_ed25519
+          ssh-keyscan github.com >> ~/.ssh/known_hosts
+          echo -e "Host github.com\n  HostName github.com\n  User git\n  IdentityFile ~/.ssh/id_ed25519\n  IdentitiesOnly yes\n" > ~/.ssh/config
+          export GIT_SSH_COMMAND="ssh -i ~/.ssh/id_ed25519 -o IdentitiesOnly=yes"
+          eval "$(ssh-agent -s)"
+          ssh-add ~/.ssh/id_ed25519
+
+      - name: Imposta la directory Git come sicura
+        run: git config --global --add safe.directory /home/aletheialab/aletheialab-app
+
+      - name: Esegui il deploy con Docker Compose
+        run: |
+          cd /home/aletheialab/aletheialab-app
+          git fetch origin
+          git reset --hard origin/main
+          docker compose pull
+          docker compose up -d --build
+          rm -f ~/.ssh/id_ed25519
+
+      - name: Pulisci spazio su disco (immagini e volumi inutilizzati)
+        run: docker system prune -af --volumes
