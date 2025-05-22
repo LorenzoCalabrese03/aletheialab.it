@@ -1,7 +1,7 @@
 "use client";
 import { motion, useInView } from "framer-motion";
 import Image from "next/image";
-import { BookText } from "lucide-react";
+import { BookText, ArrowBigRightDash } from "lucide-react";
 
 import { useEffect, useRef, useState } from "react";
 
@@ -45,7 +45,7 @@ const CountUp = ({ end, duration = 2 }: CountUpProps) => {
 
 export default function About() {
   return (
-    <div className="container px-4 md:px-6 items-center py-12 relative">
+    <div className="container px-4 md:px-6 items-center py-12 relative ">
       <motion.div
         className="absolute -top-10 -left-10 w-40 h-40 bg-primary/20 rounded-full blur-3xl"
         animate={{
@@ -126,7 +126,7 @@ export default function About() {
             <div className="grid grid-cols-2 gap-6">
               <div>
                 <motion.div
-                  whileHover={{ scale: 1.1, rotate: 5 }}
+                  whileHover={{ scale: 1.1, rotate: -5 }}
                   className="text-4xl font-bold text-primary"
                 >
                   <CountUp end={50} />+
@@ -150,7 +150,7 @@ export default function About() {
 
               <div>
                 <motion.div
-                  whileHover={{ scale: 1.1, rotate: 5 }}
+                  whileHover={{ scale: 1.1, rotate: -5 }}
                   className="text-4xl font-bold text-primary"
                 >
                   <CountUp end={10} />+
@@ -173,24 +173,38 @@ export default function About() {
               </div>
             </div>
           </div>
-          <div className="mt-8">
-            <motion.div
-              initial={{ width: 0, x: "10%" }}
-              animate={{ width: "100%", x: 0 }}
-              transition={{ duration: 1, ease: "easeIn" }}
-              className="w-30 h-25 bg-blue-500 mt-4 mb-6 flex rounded-lg"
-            >
-              <div>
-                <h2 className="text-xl font-bold tracking-tighter md:text-xl/tight flex items-center gap-4">
-                  <BookText />
-                  Il nostro regolamento
-                </h2>
-                <p className="mt-4 text-muted-foreground md:text-lg">
-                  Scopri i principi e i valori che guidano il nostro lavoro e il
-                  nostro impegno verso l'eccellenza e l'innovazione.
-                </p>
+
+          {/* Sezione Regolamento  */}
+
+          <div className="mt-10 p-6 rounded-xl border bg-card/50 bg-[rgb(24,24,27)] backdrop-blur-sm relative overflow-hidden">
+            <div className="flex items-center gap-3 mb-3">
+              <h3 className="text-xl font-bold">
+                <BookText />
+                Il Nostro Regolamento
+              </h3>
+            </div>
+
+            <p className="text-muted-foreground mb-4">
+              Scopri i principi e i valori che guidano il nostro lavoro e il
+              nostro impegno verso l'eccellenza e l'innovazione.
+            </p>
+
+            <button className="mt-5 p-6 rounded-xl lg:w-1/2 sm:w-1/4 border bg-[rgb(24,44,49)] backdrop-blur-sm hover:scale-105 transition">
+              <div className=" flex items-center gap-2">
+                <span className="text-custom-blue">Leggi Regolamento</span>
+                <motion.div
+                  animate={{ x: 15 }}
+                  transition={{
+                    duration: 2,
+                    repeat: Infinity,
+                    repeatType: "reverse",
+                    ease: "easeInOut",
+                  }}
+                >
+                  <ArrowBigRightDash />
+                </motion.div>
               </div>
-            </motion.div>
+            </button>
           </div>
         </div>
       </div>
