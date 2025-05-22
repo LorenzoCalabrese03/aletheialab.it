@@ -46,6 +46,26 @@
     --ring: 186 89% 51%;
   }
 }
+/* Rotazione 3D e visibilità del retro */
+.flip-card {
+  transform-style: preserve-3d;
+  transition: transform 0.8s ease-in-out;
+}
+
+.flip-card:hover {
+  transform: rotateY(180deg);
+}
+
+.flip-card-front,
+.flip-card-back {
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+.flip-card-back {
+  transform: rotateY(180deg);
+}
+
 html {
   scroll-behavior: smooth;
 }
