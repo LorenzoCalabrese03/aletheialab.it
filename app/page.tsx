@@ -6,6 +6,8 @@ import {Organigramma} from "@/components/HomePage/Organigramma";
 import {AnimatedSection} from "@/components/AnimatedSection";
 import {motion} from "framer-motion";
 
+
+
 export default function HomePage(){
   return(
       <div className="flex flex-col justify-center items-center">
@@ -16,7 +18,7 @@ export default function HomePage(){
 
         {/*About section*/}
           <section>
-            {/*<About/>*/}
+            <About/>
           </section>
 
         {/*Organigramma*/}
