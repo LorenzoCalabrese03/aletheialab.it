@@ -208,7 +208,7 @@ export default function Hero() {
                     background: "linear-gradient(to bottom, transparent, var(--muted))",
                 }}
             />
-        </MotionSection>
+        </motion.section>
 
     );
 }

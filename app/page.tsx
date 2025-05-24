@@ -12,9 +12,9 @@ export default function HomePage(){
   return(
       <div className="flex flex-col justify-center items-center">
         {/*Hero section*/}
-        {/*  <section>*/}
-        {/*    <Hero/>*/}
-        {/*  </section>*/}
+          <section>
+            <Hero/>
+          </section>
 
         {/*About section*/}
           <section>
@@ -25,12 +25,8 @@ export default function HomePage(){
           <AnimatedSection id={"organigramma"}
                            delay={0.15}
                            className="bg-background section-transition"
-                           style={{
-                               height: 200
-                           }}>
-              <div className="container px-4 md:px-6 mx-auto relative z-10 flex justify-center">
+                          >
               <Organigramma/>
-              </div>
           </AnimatedSection>
 
         {/*Service section*/}
