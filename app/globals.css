@@ -144,3 +144,35 @@ body {
 .text-custom-grigio {
   color: #707677;
 }
+
+.gradient-text {
+  background-clip: text;
+  -webkit-background-clip: text;
+  -moz-background-clip: text; /* Aggiungi questo */
+  color: transparent;
+  background-image: linear-gradient(to right, #12e5f0, #a49c9c);
+}
+.section-transition {
+  position: relative;
+  overflow: hidden;
+}
+.section-transition::before,
+.section-transition::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 150px;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.section-transition::before {
+  top: 0;
+  background: linear-gradient(to bottom, var(--tw-gradient-from), transparent);
+}
+
+.section-transition::after {
+  bottom: 0;
+  background: linear-gradient(to top, var(--tw-gradient-to), transparent);
+}
