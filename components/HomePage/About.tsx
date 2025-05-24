@@ -2,7 +2,7 @@
 import { motion, useInView } from "framer-motion";
 import Image from "next/image";
 import { BookText, ArrowBigRightDash } from "lucide-react";
-
+import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 
 const MotionSection = motion("section");
@@ -193,20 +193,22 @@ export default function About() {
               </p>
 
               <button className=" py-2 p-6 rounded-xl lg:w-1/2 sm:w-1/4  bg-[rgb(24,44,49)] backdrop-blur-sm hover:scale-105 transition">
-                <div className=" flex items-center gap-2">
-                  <span className="text-custom-blue">Leggi Regolamento</span>
-                  <motion.div
-                    animate={{ x: 15 }}
-                    transition={{
-                      duration: 2,
-                      repeat: Infinity,
-                      repeatType: "reverse",
-                      ease: "easeInOut",
-                    }}
-                  >
-                    <ArrowBigRightDash />
-                  </motion.div>
-                </div>
+                <Link href="./Rules" passHref>
+                  <div className=" flex items-center gap-2">
+                    <span className="text-custom-blue">Leggi Regolamento</span>
+                    <motion.div
+                      animate={{ x: 15 }}
+                      transition={{
+                        duration: 2,
+                        repeat: Infinity,
+                        repeatType: "reverse",
+                        ease: "easeInOut",
+                      }}
+                    >
+                      <ArrowBigRightDash />
+                    </motion.div>
+                  </div>
+                </Link>
               </button>
 
               <Image
