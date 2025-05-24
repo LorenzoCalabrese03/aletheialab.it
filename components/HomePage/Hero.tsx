@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import { ChevronRight, ChevronDown } from "lucide-react";
 import React from "react";
 
-const MotionSection = motion("section");
+
 
 interface FloatingElementProps {
     children: React.ReactNode;
@@ -48,7 +48,7 @@ export default function Hero() {
     };
 
     return (
-        <MotionSection
+        <motion.section
             id="hero"
             className="w-full py-32 md:py-40 lg:py-48 xl:py-56 relative overflow-hidden bg-background section-transition"
             initial={{ opacity: 0 }}
@@ -68,6 +68,7 @@ export default function Hero() {
                     transition={{ duration: 10, repeat: Infinity, ease: "easeInOut", delay: 1 }}
                 />
             </div>
+
 
             {/* Content */}
             <div className="container px-4 md:px-6 relative z-10">
@@ -208,5 +209,6 @@ export default function Hero() {
                 }}
             />
         </MotionSection>
+
     );
 }

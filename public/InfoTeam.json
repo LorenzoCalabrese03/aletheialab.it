@@ -1,0 +1,78 @@
+[
+  {
+    "id": "lorenzo",
+    "name": "Lorenzo Calabrese",
+    "role": "Co-Founder",
+    "image": "/placeholder.svg?height=300&width=300&text=LC",
+    "bio": "Visionario e stratega, Lorenzo guida Aletheia con passione e determinazione verso nuovi orizzonti di innovazione.",
+    "email": "lorenzo.calabrese@aletheia.com",
+    "phone": "+39 123 456 7890",
+    "social": {
+      "linkedin": "https://linkedin.com/in/lorenzo-calabrese",
+      "github": "https://github.com/lorenzocalabrese"
+    },
+    "skills": [
+      "Leadership",
+      "Strategia",
+      "Innovazione",
+      "Business Development"
+    ]
+  },
+  {
+    "id": "francesco",
+    "name": "Francesco Conforti",
+    "role": " Co-Founder",
+    "image": "/placeholder.svg?height=300&width=300&text=FC",
+    "bio": "Esperto tecnologico con una profonda conoscenza delle ultime innovazioni, Francesco supervisiona tutti gli aspetti tecnici dei nostri progetti.",
+    "email": "francesco.conforti@aletheia.com",
+    "phone": "+39 123 456 7891",
+    "social": {
+      "linkedin": "https://linkedin.com/in/francesco-conforti",
+      "github": "https://github.com/francescoconforti"
+    },
+    "skills": [
+      "Architettura Software",
+      "AI",
+      "Cloud Computing",
+      "DevOps"
+    ]
+  },
+  {
+    "id": "giuseppe",
+    "name": "Giuseppe Pio De Biase",
+    "role": "Co-Founder ",
+    "image": "/placeholder.svg?height=300&width=300&text=GD",
+    "bio": "Con un occhio attento ai dettagli e una mente orientata all'efficienza, Giuseppe coordina le operazioni quotidiane garantendo eccellenza in ogni progetto.",
+    "email": "giuseppe.debiase@aletheia.com",
+    "phone": "+39 123 456 7892",
+    "social": {
+      "linkedin": "https://linkedin.com/in/giuseppe-debiase",
+      "github": "https://github.com/giuseppedebiase"
+    },
+    "skills": [
+      "Project Management",
+      "Operational Excellence",
+      "Team Leadership",
+      "Process Optimization"
+    ]
+  },
+  {
+    "id": "alexandru",
+    "name": "Alexandru Zaharia",
+    "role": "Co-Founder",
+    "image": "/placeholder.svg?height=300&width=300&text=AZ",
+    "bio": "Creativo e innovativo, Alexandru sviluppa strategie di marketing che amplificano la visione di Aletheia e la connettono con il mondo.",
+    "email": "alexandru.zaharia@aletheia.com",
+    "phone": "+39 123 456 7893",
+    "social": {
+      "linkedin": "https://linkedin.com/in/alexandru-zaharia",
+      "github": "https://github.com/alexandruzaharia"
+    },
+    "skills": [
+      "Digital Marketing",
+      "Brand Strategy",
+      "Content Creation",
+      "Market Analysis"
+    ]
+  }
+]
