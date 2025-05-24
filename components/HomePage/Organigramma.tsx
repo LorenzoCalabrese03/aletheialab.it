@@ -147,36 +147,45 @@ export function Organigramma() {
             </div>
             {infoMobile && selectedMember && (
                 <div
-                    className="fixed inset-0 bg-black/50 flex items-center justify-center z-50"
+                    className="fixed inset-0 bg-black flex items-center justify-center z-50"
                     onClick={() => setInfoMobile(false)}
                 >
+                    {/* Sfondo semi-trasparente con immagine */}
+                    <div
+                        className="absolute inset-0 bg-[url('/Logo_trasparente.png')] bg-center bg-cover opacity-20"
+                        aria-hidden="true"
+                    />
 
-                <div className="bg-white rounded-2xl shadow-xl p-6 w-full max-w-sm relative" onClick={(e) => e.stopPropagation()}>
+                    {/* Contenuto vero sopra */}
+                    <div
+                        className="relative z-10 max-w-md p-6 h-full rounded-lg shadow-lg"
+                        onClick={(e) => e.stopPropagation()}
+                    >
                         {/* Pulsante per chiudere */}
                         <button
                             onClick={() => setInfoMobile(false)}
-                            className="absolute top-3 right-3 text-gray-500 hover:text-gray-800 text-xl"
+                            className="absolute top-3 right-3 text-white hover:text-blue-400 cursor-pointer text-xl"
                         >
                             &times;
                         </button>
 
                         <div className="flex flex-col items-center text-center">
                             <div
-                                className="w-24 h-24 bg-gray-200 rounded-full mb-4 bg-cover bg-center"
+                                className="w-24 h-24 bg-white rounded-full mb-4 bg-cover bg-center"
                                 style={{ backgroundImage: "url('Logo_trasparente.png')" }}
                             />
-                            <h2 className="text-xl font-semibold text-gray-800">{selectedMember.name}</h2>
-                            <h3 className="text-sm text-gray-500 mb-3">{selectedMember.role}</h3>
-                            <p className="text-sm text-gray-700 mb-4">{selectedMember.bio}</p>
+                            <h2 className="text-xl font-semibold text-white">{selectedMember.name}</h2>
+                            <h3 className="text-sm text-white mb-3">{selectedMember.role}</h3>
+                            <p className="text-sm text-white mb-4">{selectedMember.bio}</p>
                             <div className="flex gap-4 mb-3">
                                 <a href={selectedMember.social.github} target="_blank" rel="noopener noreferrer">
-                                    <Github className="w-6 h-6 text-gray-700 hover:text-black" />
+                                    <Github className="w-6 h-6 text-white hover:text-black" />
                                 </a>
                                 <a href={selectedMember.social.linkedin} target="_blank" rel="noopener noreferrer">
                                     <Linkedin className="w-6 h-6 text-blue-600 hover:text-blue-800" />
                                 </a>
                             </div>
-                            <a href={`mailto:${selectedMember.email}`} className="text-sm text-blue-600 hover:underline">
+                            <a href={`mailto:${selectedMember.email}`} className="text-sm text-blue-400 hover:underline">
                                 {selectedMember.email}
                             </a>
                             <a href={`tel:${selectedMember.phone}`} className="text-sm text-gray-600 mt-1">
@@ -185,6 +194,7 @@ export function Organigramma() {
                         </div>
                     </div>
                 </div>
+
             )}
 
 
