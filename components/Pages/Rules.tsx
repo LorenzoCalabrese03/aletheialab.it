@@ -1,6 +1,7 @@
 "use client";
 import { motion } from "framer-motion";
 import { section } from "framer-motion/client";
+import { Download } from "lucide-react";
 import Link from "next/link";
 
 const regulationSections = [
@@ -64,16 +65,23 @@ export default function Rules() {
           Torna alla Home
         </Link>
 
-        <h3 className="font-semibold text-lg">Indice</h3>
+        <h3 className="font-semibold text-lg  md:mt-48">Indice</h3>
 
-        <nav className="space-y-2">
+        <nav className="space-y-2 ">
           {regulationSections.map((section) => (
             <a
               key={section.id}
               href={`#${section.id}`}
               className="block text-sm text text-muted-foregorund hover:text-foreground"
             >
-              {section.title}
+              <motion.div
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <div className="bg-red-400 hover:bg-red-600 px-1 py-1.5 rounded-xl">
+                  {section.title}
+                </div>
+              </motion.div>
             </a>
           ))}
         </nav>
@@ -86,13 +94,26 @@ export default function Rules() {
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 2 }}
         >
-          <h2 className="text-3xl font-bold tracking-tighter md:text-4xl/tight md:mt-8 col-span-3  text-center ">
+          <h1 className="text-4xl font-bold tracking-tighter sm:text-5xl text-center">
             Regolamento
-          </h2>
+          </h1>
           <p className="mt-4 text-muted-foreground md:text-lg text-custom-grigio text-center ">
             Il nostro impegno per l'eccellenza, l'innovazione e l'integrità.
           </p>
+
+          {/*Sezione Scarica PDF */}
+
+          <div className="flex flex-col justify-center items-center w-full mt-4 mb-2">
+            <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+              <button className=" flex items-center gap-2  bg-[rgb(116,221,238)]  hover:bg-[rgb(98,190,204)]  rounded-3xl py-2 px-5">
+                <span>Scarica PDF</span>
+                <Download />
+              </button>
+            </motion.div>
+          </div>
         </motion.div>
+
+        {/*Sezione Titolo+Descrizione Regole */}
 
         {regulationSections.map((section) => (
           <section
@@ -101,6 +122,15 @@ export default function Rules() {
             className="scroll-mt-24 ctext-center  p-4"
           >
             <h2 className="font-semibold mb-2">{section.title}</h2>
+
+            {/*Sezione Linea */}
+            <motion.div
+              initial={{ width: 0, x: "10%" }}
+              animate={{ width: "10%", x: 0 }}
+              transition={{ duration: 1, ease: "easeIn" }}
+              className="w-14 h-1  bg-[rgb(116,221,238)]  mt-4 mb-6 "
+            ></motion.div>
+
             <p className="text-muted-foreground">{section.content}</p>
           </section>
         ))}
