@@ -1,12 +1,11 @@
 "use client"
-import {useState, useRef, useEffect} from "react"
+import React, {useState, useRef, useEffect} from "react"
 import Image from "next/image"
 import { motion} from "framer-motion"
 import { Users, ChevronDown, ChevronUp, User, Mail, Phone, Github, Linkedin } from "lucide-react"
 
-//import { Button } from "@/components/ui/button"
 import {InfoTeam} from "@/type/Team"
-// Dati dell'organigramma
+
 
 
 export function Organigramma() {
@@ -15,24 +14,10 @@ export function Organigramma() {
     const [teamMembers,setTeamMembers] = useState<InfoTeam[]>([]);
     const [infoMobile, setInfoMobile] = useState(false);
     const [selectedMember, setSelectedMember] = useState<InfoTeam>();
-
+    const [isFlipped, setIsFlipped] = React.useState<number | null>(null);
     const [isMobile, setIsMobile] = useState(false);
 
-
-
-
-    useEffect(() => {
-        const handleResize = () => {
-            setIsMobile(window.innerWidth < 768);
-        };
-
-        handleResize(); // chiamata iniziale
-
-        window.addEventListener("resize", handleResize);
-        return () => window.removeEventListener("resize", handleResize);
-    }, []);
-
-
+    {/* Richiesta API */}
     useEffect(() => {
         fetch("/InfoTeam.json")
             .then((response) => {
@@ -46,6 +31,20 @@ export function Organigramma() {
                 console.error("Errore nel caricamento dei dati:", error);
             });
     }, []);
+
+    {/* Controllo se è in formato mobile */}
+    useEffect(() => {
+        const handleResize = () => {
+            setIsMobile(window.innerWidth < 768);
+        };
+
+        handleResize(); // chiamata iniziale
+
+        window.addEventListener("resize", handleResize);
+        return () => window.removeEventListener("resize", handleResize);
+    }, []);
+
+    {/* Funzione per prendere le informazioni dell'utente selezionato in modalità mobile */}
     const handleInfo = (member:InfoTeam) => {
         setSelectedMember(member);
         setInfoMobile(true); // Mostra la card
@@ -60,6 +59,7 @@ export function Organigramma() {
                 viewport={{ once: true }}
                 className="space-y-2 text-center"
             >
+                {/* Header */}
                 <h2 className="text-3xl font-bold tracking-tighter md:text-4xl">
                     Il Nostro Organigramma
                 </h2>
@@ -102,42 +102,65 @@ export function Organigramma() {
                     ) : (
                         <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-4 justify-items-center relative z-10">
                             {teamMembers.map((member, index) => (
-                                <div className="group [perspective:1000px] w-[300px] h-[450px] cursor-pointer" key={index}>
-                                    <div className="relative w-full h-full border border-gray-300 rounded-2xl flip-card">
-
-                                        {/* Front */}
-                                        <div className="absolute w-full h-full rounded-2xl bg-[#4683a3] flip-card-front">
+                                <div className="group [perspective:1000px] w-[300px] h-[450px]" key={index}>
+                                    {/* Animazione */}
+                                    <div className="relative w-full h-full [transform-style:preserve-3d] transition-transform duration-700 rounded-2xl"
+                                         style={{ transform: isFlipped === index ? 'rotateY(180deg)' : 'rotateY(0deg)' }}>
+                                        {/* FRONT */}
+                                        <div className="absolute w-full h-full bg-[#4683a3] rounded-2xl [backface-visibility:hidden]">
+                                            {/* Foto */}
                                             <div
                                                 className="h-2/3 bg-cover bg-center rounded-t-2xl"
                                                 style={{ backgroundImage: "url('Logo_trasparente.png')" }}
                                             />
+                                            {/* Informazioni di base */}
                                             <div className="h-1/3 bg-white flex flex-col justify-center items-center px-4 rounded-b-2xl">
                                                 <h2 className="text-xl font-bold text-black">{member.name}</h2>
                                                 <h3 className="text-sm text-[#17283a] mt-1">{member.role}</h3>
+                                                <button
+                                                    className="mt-3 text-sm text-blue-600 hover:underline"
+                                                    onClick={() => setIsFlipped(index)} // ✅ GIUSTO: imposta l'indice corrente
+                                                >
+                                                    Scopri di più
+                                                </button>
                                             </div>
                                         </div>
 
-                                        {/* Back */}
-                                        <div className="absolute w-full h-full rounded-2xl bg-[#ededed] text-black flex justify-center items-center flip-card-back">
-                                            <div className="text-center p-5 max-w-[280px] flex flex-col items-center">
-                                                <p className="text-base mb-4 leading-relaxed">{member.bio}</p>
-                                                <div className="flex gap-4 mb-3 mt-2">
+                                        {/* BACK */}
+                                        <div className="absolute w-full h-full bg-[#ededed] rounded-2xl [backface-visibility:hidden] rotate-y-180 text-black flex flex-col">
+
+                                            {/* Bottone torna indietro */}
+                                            <div className="flex justify-end p-3">
+                                                <button
+                                                    className="text-blue-600 text-sm hover:underline"
+                                                    onClick={() => setIsFlipped(null)} // ✅ GIUSTO: azzera lo stato per tornare al front
+                                                >
+                                                    Torna indietro
+                                                </button>
+                                            </div>
+
+                                            {/* Informazioni */}
+                                            <div className="flex-1 flex flex-col items-center justify-center px-5 text-center">
+                                                <p className="mb-4 text-sm">{member.bio}</p>
+                                                <div className="flex gap-4 mb-3">
                                                     <a href={member.social.github} target="_blank" rel="noopener noreferrer">
-                                                        <Github className="w-6 h-6 hover:text-[#333]" />
+                                                        <Github className="w-5 h-5" />
                                                     </a>
                                                     <a href={member.social.linkedin} target="_blank" rel="noopener noreferrer">
-                                                        <Linkedin className="w-6 h-6 hover:text-[#0077b5]" />
+                                                        <Linkedin className="w-5 h-5" />
                                                     </a>
                                                 </div>
-                                                <a href={`mailto:${member.email}`} className="text-sm text-blue-600 hover:underline">
-                                                    {member.email}
-                                                </a>
-                                                <a href={`tel:${member.phone}`} className="text-sm text-gray-600 mt-1">
-                                                    {member.phone}
-                                                </a>
+                                                <div className="flex flex-col items-center pb-4">
+                                                    <a href={`mailto:${member.email}`} className="text-sm text-blue-600 hover:underline flex flex-row gap-2">
+                                                        <Mail/>{member.email}
+                                                    </a>
+                                                    <a href={`tel:${member.phone}`} className="text-sm text-gray-600 mt-1">
+                                                        {member.phone}
+                                                    </a>
+                                                </div>
                                             </div>
-                                        </div>
-                                    </div>
+                                        </div> {/* Fine Back */}
+                                    </div>{/* Fine animazioni */}
                                 </div>
 
                             ))}

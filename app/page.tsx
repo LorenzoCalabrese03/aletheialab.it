@@ -19,20 +19,14 @@ export default function HomePage() {
         <About />
       </section>
 
-      {/*Organigramma*/}
+      {/*Organigramma section*/}
       <AnimatedSection
         id={"organigramma"}
         delay={0.15}
         className="bg-background section-transition"
-        style={{
-          height: 200,
-        }}
+
       >
-        <div className="container px-4 md:px-6 relative z-10">
-          <div>
             <Organigramma />
-          </div>
-        </div>
       </AnimatedSection>
 
       {/*Service section*/}

@@ -48,25 +48,32 @@
   }
 }
 /* Rotazione 3D e visibilità del retro */
-.flip-card {
+.perspective {
+  perspective: 1000px;
+}
+
+.transform-style {
   transform-style: preserve-3d;
-  transition: transform 0.8s ease-in-out;
 }
 
-.flip-card:hover {
-  transform: rotateY(180deg);
-}
-
-.flip-card-front,
-.flip-card-back {
+.backface-hidden {
   backface-visibility: hidden;
-  -webkit-backface-visibility: hidden;
 }
 
-.flip-card-back {
+.rotate-y-180 {
   transform: rotateY(180deg);
-
 }
+
+.face {
+  backface-visibility: hidden;
+  transform-style: preserve-3d;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+}
+
 
 html {
   scroll-behavior: smooth;
