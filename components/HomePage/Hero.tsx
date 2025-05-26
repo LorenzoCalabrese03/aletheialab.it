@@ -189,7 +189,7 @@ export default function Hero() {
                                         <motion.img
                                             src="/Logo_trasparente.png"
                                             alt="Aletheia"
-                                            className="h-40 w-40 object-contain"
+                                            className="h-55 w-55 object-contain"
                                             animate={{ scale: [1, 1.1, 1] }}
                                             transition={{
                                                 duration: 4,
