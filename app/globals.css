@@ -98,13 +98,19 @@ html {
 
 .bg-grid {
   background-size: 40px 40px;
-  background-image: linear-gradient(to right, rgba(128, 128, 128, 0.05) 1px, transparent 1px),
-  linear-gradient(to bottom, rgba(128, 128, 128, 0.05) 1px, transparent 1px);
+  background-image:
+          linear-gradient(135deg, rgba(128, 128, 255, 0.05), rgba(200, 128, 255, 0.05)),
+          linear-gradient(to right, rgba(128, 128, 128, 0.08) 2px, transparent 2px),
+          linear-gradient(to bottom, rgba(128, 128, 128, 0.08) 2px, transparent 2px);
 }
+
 .dark .bg-grid {
-  background-image: linear-gradient(to right, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
-  linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+  background-image:
+          linear-gradient(135deg, rgba(128, 128, 255, 0.08), rgba(200, 128, 255, 0.08)),
+          linear-gradient(to right, rgba(255, 255, 255, 0.05) 2px, transparent 2px),
+          linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
 }
+
 .bg-dots {
   background-size: 20px 20px;
   background-image: radial-gradient(rgba(128, 128, 128, 0.1) 1px, transparent 1px);
@@ -112,6 +118,22 @@ html {
 
 .dark .bg-dots {
   background-image: radial-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+}
+.glow {
+  position: relative;
+}
+
+.glow::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: radial-gradient(circle at center, rgba(18, 229, 240, 0.15), transparent 70%);
+  filter: blur(20px);
+}
+
+.dark .glow::after {
+  background: radial-gradient(circle at center, rgba(18, 229, 240, 0.25), transparent 70%);
 }
 @theme inline {
   --color-background: var(--background);

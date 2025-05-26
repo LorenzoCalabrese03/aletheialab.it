@@ -4,7 +4,7 @@ import Image from "next/image"
 import { motion} from "framer-motion"
 import { Users, ChevronDown, ChevronUp, User, Mail, Phone, Github, Linkedin } from "lucide-react"
 
-import {InfoTeam} from "@/type/Team"
+import {InfoTeam} from "@/type/InfoGenerali"
 
 
 

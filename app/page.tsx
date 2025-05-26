@@ -5,10 +5,11 @@ import About from "@/components/HomePage/About";
 import { Organigramma } from "@/components/HomePage/Organigramma";
 import { AnimatedSection } from "@/components/AnimatedSection";
 import { motion } from "framer-motion";
+import Contact from "@/components/HomePage/Contact";
 
 export default function HomePage() {
   return (
-    <div className="flex flex-col justify-center items-center">
+    <div className="flex flex-col justify-center items-center bg-grid">
       {/*Hero section*/}
       <section>
         <Hero />
@@ -23,14 +24,31 @@ export default function HomePage() {
       <AnimatedSection
         id={"organigramma"}
         delay={0.15}
-        className="bg-background section-transition"
+        className=" section-transition"
 
       >
             <Organigramma />
       </AnimatedSection>
 
-      {/*Service section*/}
-      <section></section>
+        {/*Service section*/}
+        <AnimatedSection
+            id="contact"
+            delay={1.0}
+            className="bg-muted section-transition"
+        >
+            <></>
+        </AnimatedSection>
+
+        {/* Contact section */}
+        <AnimatedSection
+            id="contact"
+            delay={1.0}
+            className="bg-muted section-transition"
+        >
+            <Contact/>
+        </AnimatedSection>
+
+
 
       {/*Calendar section*/}
       <section></section>

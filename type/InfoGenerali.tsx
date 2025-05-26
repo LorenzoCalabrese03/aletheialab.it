@@ -12,3 +12,8 @@ export  interface InfoTeam{
     };
     skills: string[];
 }
+export interface InfoLab{
+    indirizzo:string;
+    email:string;
+
+}

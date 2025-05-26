@@ -48,13 +48,13 @@ export default function Hero() {
         // Sezione animata tramite framer-motion
         <motion.section
             id="hero"
-            className="w-full py-32 md:py-40 lg:py-48 xl:py-56 relative overflow-hidden bg-background section-transition"
+            className="w-full py-32 md:py-40 lg:py-48 xl:py-56 relative overflow-hidden section-transition"
             initial={{ opacity: 0 }} // Opacità iniziale trasparente
             animate={{ opacity: 1 }} // Fade in verso opacità piena
             transition={{ duration: 0.6 }} // Durata animazione 0.6s
         >
             {/* Background blobs animati - sfondo decorativo */}
-            <div className="absolute inset-0 z-0 bg-grid">
+            <div className="absolute inset-0 z-0">
                 <motion.div
                     className="absolute top-20 left-10 w-64 h-64 rounded-full bg-primary/20 blur-3xl"
                     animate={{ scale: [1, 1.2, 1], opacity: [0.3, 0.5, 0.3] }} // Animazione pulsante di scala e opacità
