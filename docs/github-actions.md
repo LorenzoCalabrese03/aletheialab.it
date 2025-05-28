@@ -108,7 +108,7 @@ jobs:
 
 Di seguito il file `github-actions.yml`:
 
-**[github-actions.yml](../.github/workflows/github-actions.yml)** – Come viene gestito il github-actions.
+**[github-actions.yml](../.github/workflows/deploy.yml)** – Come viene gestito il github-actions.
 
 ---
 
