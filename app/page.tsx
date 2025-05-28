@@ -32,7 +32,7 @@ export default function HomePage() {
 
         {/*Service section*/}
         <AnimatedSection
-            id="contact"
+            id="service"
             delay={1.0}
             className="bg-muted section-transition"
         >
