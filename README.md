@@ -1,36 +1,152 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🌐 Sito Web Ufficiale di Aletheia
 
-## Getting Started
+Benvenuto nel repository ufficiale del sito web di **Aletheia**
 
-First, run the development server:
+È costruito con:
+
+* [Next.js](https://nextjs.org/) – framework React per lo sviluppo di applicazioni web moderne.
+* [Docker](https://www.docker.com/) – per creare ambienti di sviluppo isolati e replicabili.
+* [Node.js](https://nodejs.org/) – runtime per eseguire JavaScript lato server.
+* [GitHub Actions](https://github.com/features/actions) – per automatizzare test, build e deploy.
+
+---
+
+## ✅ Requisiti di base
+
+Per seguire questo progetto sul tuo computer, assicurati di avere installato i seguenti strumenti:
+
+* 🐳 **Docker** – serve a "contenere" l'applicazione in un ambiente isolato.
+* 🧩 **Docker Compose** – per avviare più servizi con un solo comando.
+* 🟢 **Node.js** – necessario per installare dipendenze e avviare lo sviluppo locale.
+* 🧬 **Git** – per clonare il progetto e contribuire al codice.
+
+> 🔍 Suggerimento: se stai usando **Docker Desktop**, Docker Compose è già incluso!
+
+---
+
+## 🚀 Come iniziare passo per passo
+
+### 1️⃣ Clona il progetto
+
+Apri il terminale e digita:
 
 ```bash
+git clone https://github.com/Aletheia-Sartup/aletheialab.it.git
+cd aletheialab.it
+```
+
+### 2️⃣ Apri il progetto nel tuo editor preferito
+
+Ad esempio [Visual Studio Code](https://code.visualstudio.com/) o [IntelliJ](https://www.jetbrains.com/idea/).
+
+---
+
+## 🐳 Avviare il progetto con Docker Compose
+
+Docker Compose ti permette di avviare il sito con un singolo comando. È come avere un "ambiente pronto all’uso", senza dover installare manualmente ogni dipendenza.
+
+```bash
+docker-compose up --build
+```
+
+Poi apri il browser e vai su:
+
+```
+http://localhost:3000
+```
+
+> ⛔ Vuoi spegnere tutto? Usa:
+>
+> ```bash
+> docker-compose down
+> ```
+
+---
+
+## 🔁 Automazioni con GitHub Actions
+
+Questo progetto usa **GitHub Actions** per automatizzare il flusso di lavoro (workflow) ogni volta che viene inviato codice al branch `main`.
+
+Il file si trova qui:
+`.github/workflows/deploy.yml`
+
+Cosa fa:
+
+* 🔧 Compila (build) l'applicazione
+* 🚀 La pubblica (deploy) in produzione
+
+> ✨ Questo rende il progetto sempre aggiornato automaticamente!
+---
+
+## 🧑‍💻 Avvio locale (senza Docker)
+
+Se vuoi eseguire il progetto *manualmente* senza Docker (ad esempio per modifiche rapide), segui questi passaggi:
+
+```bash
+npm install
 npm run dev
-# or
+```
+
+Oppure:
+
+```bash
+# con yarn
+yarn install
 yarn dev
-# or
+
+# con pnpm
+pnpm install
 pnpm dev
-# or
+
+# con bun
+bun install
 bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Una volta avviato, apri il browser su `http://localhost:3000`
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+---
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 🛠️ Come personalizzare il progetto
 
-## Learn More
+Vuoi adattare il sito alle tue esigenze? Ecco da dove partire:
 
-To learn more about Next.js, take a look at the following resources:
+1. Esplora la cartella `app/` per vedere le pagine e i componenti principali.
+2. Puoi modificare file `.jsx` o `.ts` per cambiare contenuti o stili.
+3. Se aggiungi nuove librerie, ricorda di eseguire nuovamente i seguenti comandi:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+   ```bash
+   docker-compose build
+   docker-compose up
+   ```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+---
 
-## Deploy on Vercel
+## 🗂️ Struttura del progetto
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+```text
+aletheialab.it/
+├── docker-compose.yml       # Configurazione servizi Docker
+├── Dockerfile               # Configurazione servizi Docker
+├── .github/                 # Workflow GitHub Actions
+│   └── workflows/
+│       └── deploy.yml
+├── app/                     # Pagine e routing Next.js
+├── components/              # Componenti riutilizzabili
+├── public/                  # File statici (immagini, icone, ecc.)
+├── hooks/                   # Funzioni personalizzate di React
+├── package.json             # Dipendenze e script
+└── ...
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+---
+
+## 📘 Approfondimenti tecnici
+
+Abbiamo preparato guide dedicate per aiutarti a comprendere ogni parte tecnica del progetto:
+
+* 🔧 **[Dockerfile.md](docs/Dockerfile.md)** – Come viene costruita l'immagine Docker e perché.
+* 🧩 **[docker-compose.md](docs/docker-compose.md)** – Spiegazione dei servizi definiti e come interagiscono.
+* 🔁 **[github-actions.md](docs/github-actions.md)** – Come funziona il flusso CI/CD automatizzato.
+
+Trovi questi file nella cartella [`docs/`](docs/).
