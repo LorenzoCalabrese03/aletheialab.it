@@ -77,6 +77,12 @@ CMD ["npm", "start"]
 
 ---
 
+Di seguito il file `Dockerfile`:
+
+**[Dockerfile](../Dockerfile)** – Come viene costruita l'immagine Docker.
+
+---
+
 ## 🛠️ Personalizzazioni comuni
 
 Se si desidera apportare delle modifiche al file, queste sono le più comuni:
