@@ -32,8 +32,8 @@ Apri il terminale e digita:
 
 ```bash
 git clone https://github.com/Aletheia-Sartup/aletheialab.it.git
-cd aletheialab.it
 ```
+selezionando la cartella di destinazione
 
 ### 2️⃣ Apri il progetto nel tuo editor preferito
 
