@@ -1,10 +1,157 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 240 10% 3.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 240 10% 3.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 240 10% 3.9%;
+    --primary: 186 89% 51%;
+    --primary-foreground: 0 0% 0%;
+    --secondary: 0 0% 64%;
+    --secondary-foreground: 240 5.9% 10%;
+    --muted: 240 4.8% 95.9%;
+    --muted-foreground: 240 3.8% 46.1%;
+    --accent: 240 4.8% 95.9%;
+    --accent-foreground: 240 5.9% 10%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 240 5.9% 90%;
+    --input: 240 5.9% 90%;
+    --ring: 186 89% 51%;
+    --radius: 0.5rem;
+  }
+  .dark {
+    --background: 240 10% 3.9%;
+    --foreground: 0 0% 98%;
+    --card: 240 10% 3.9%;
+    --card-foreground: 0 0% 98%;
+    --popover: 240 10% 3.9%;
+    --popover-foreground: 0 0% 98%;
+    --primary: 186 89% 51%;
+    --primary-foreground: 0 0% 0%;
+    --secondary: 0 0% 64%;
+    --secondary-foreground: 0 0% 98%;
+    --muted: 240 3.7% 15.9%;
+    --muted-foreground: 240 5% 64.9%;
+    --accent: 240 3.7% 15.9%;
+    --accent-foreground: 0 0% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 240 3.7% 15.9%;
+    --input: 240 3.7% 15.9%;
+    --ring: 186 89% 51%;
+  }
+}
+/* Rotazione 3D e visibilità del retro */
+.perspective {
+  perspective: 1000px;
 }
 
+.transform-style {
+  transform-style: preserve-3d;
+}
+
+.backface-hidden {
+  backface-visibility: hidden;
+}
+
+.rotate-y-180 {
+  transform: rotateY(180deg);
+}
+
+.face {
+  backface-visibility: hidden;
+  transform-style: preserve-3d;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+.section-divider {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 150px;
+  z-index: 1;
+  pointer-events: none;
+}
+.section-divider-top {
+  top: -150px;
+  background: linear-gradient(to bottom, transparent, var(--section-to-color));
+}
+
+.section-divider-bottom {
+  bottom: -150px;
+  background: linear-gradient(to top, transparent, var(--section-from-color));
+}
+
+.bg-grid {
+  background-size: 40px 40px;
+  background-image: linear-gradient(
+      135deg,
+      rgba(128, 128, 255, 0.05),
+      rgba(200, 128, 255, 0.05)
+    ),
+    linear-gradient(to right, rgba(128, 128, 128, 0.08) 2px, transparent 2px),
+    linear-gradient(to bottom, rgba(128, 128, 128, 0.08) 2px, transparent 2px);
+}
+
+.dark .bg-grid {
+  background-image: linear-gradient(
+      135deg,
+      rgba(128, 128, 255, 0.08),
+      rgba(200, 128, 255, 0.08)
+    ),
+    linear-gradient(to right, rgba(255, 255, 255, 0.05) 2px, transparent 2px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+}
+
+.bg-dots {
+  background-size: 20px 20px;
+  background-image: radial-gradient(
+    rgba(128, 128, 128, 0.1) 1px,
+    transparent 1px
+  );
+}
+
+.dark .bg-dots {
+  background-image: radial-gradient(
+    rgba(255, 255, 255, 0.1) 1px,
+    transparent 1px
+  );
+}
+.glow {
+  position: relative;
+}
+
+.glow::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: radial-gradient(
+    circle at center,
+    rgba(18, 229, 240, 0.15),
+    transparent 70%
+  );
+  filter: blur(20px);
+}
+
+.dark .glow::after {
+  background: radial-gradient(
+    circle at center,
+    rgba(18, 229, 240, 0.25),
+    transparent 70%
+  );
+}
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -24,18 +171,58 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
-.text-custom-blue{
+
+.bg-custom-74ddee {
+  background-color: #74ddee;
+}
+.text-custom-blue {
   color: #74ddee;
 }
-.text-custom-blueScuro{
+.text-custom-blueScuro {
   color: #17283a;
 }
-.text-custom-grey{
+.text-custom-grey {
   color: #c5c9c4;
 }
-.text-custom-verdeAcqua{
+.text-custom-verdeAcqua {
   color: #4683a3;
 }
-.text-custom-grigio{
+.text-custom-grigio {
   color: #707677;
+}
+
+.hover\:text-custom-blue:hover {
+  color: #74ddee;
+}
+
+.gradient-text {
+  background-clip: text;
+  -webkit-background-clip: text;
+  -moz-background-clip: text; /* Aggiungi questo */
+  color: transparent;
+  background-image: linear-gradient(to right, #12e5f0, #a49c9c);
+}
+.section-transition {
+  position: relative;
+  overflow: hidden;
+}
+.section-transition::before,
+.section-transition::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 150px;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.section-transition::before {
+  top: 0;
+  background: linear-gradient(to bottom, var(--tw-gradient-from), transparent);
+}
+
+.section-transition::after {
+  bottom: 0;
+  background: linear-gradient(to top, var(--tw-gradient-to), transparent);
 }

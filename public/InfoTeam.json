@@ -1,0 +1,78 @@
+[
+  {
+    "id": "lorenzo",
+    "name": "Lorenzo Calabrese",
+    "role": "Co-Founder",
+    "image": "./Lorenzo.avif",
+    "bio": "Visionario e stratega, Lorenzo guida Aletheia con passione e determinazione verso nuovi orizzonti di innovazione.",
+    "email": "lorenzcalabrese.aziendale@gmail.com",
+    "phone": "",
+    "social": {
+      "linkedin": "https://www.linkedin.com/in/lorenzo-calabrese-aziendale",
+      "github": "https://github.com/LorenzoCalabrese03"
+    },
+    "skills": [
+      "Leadership",
+      "Strategia",
+      "Innovazione",
+      "Business Development"
+    ]
+  },
+  {
+    "id": "francesco",
+    "name": "Francesco Conforti",
+    "role": " Co-Founder",
+    "image": "./Francesco.avif",
+    "bio": "Esperto tecnologico con una profonda conoscenza delle ultime innovazioni, Francesco supervisiona tutti gli aspetti tecnici dei nostri progetti.",
+    "email": "",
+    "phone": "",
+    "social": {
+      "linkedin": "https://www.linkedin.com/in/confortifrancesco/",
+      "github": "https://github.com/checcoconf"
+    },
+    "skills": [
+      "Architettura Software",
+      "AI",
+      "Cloud Computing",
+      "DevOps"
+    ]
+  },
+  {
+    "id": "giuseppe",
+    "name": "Giuseppe Pio De Biase",
+    "role": "Co-Founder ",
+    "image": "./Giuseppe.avif",
+    "bio": "Con un occhio attento ai dettagli e una mente orientata all'efficienza, Giuseppe coordina le operazioni quotidiane garantendo eccellenza in ogni progetto.",
+    "email": "giuseppepiodebiase@yhaoo.it",
+    "phone": "",
+    "social": {
+      "linkedin": "https://www.linkedin.com/in/giuseppe-pio-de-biase-6329a2270/",
+      "github": "https://github.com/GiuseppePioDeBiase/"
+    },
+    "skills": [
+      "Project Management",
+      "Operational Excellence",
+      "Team Leadership",
+      "Process Optimization"
+    ]
+  },
+  {
+    "id": "alexandru",
+    "name": "Alexandru Zaharia",
+    "role": "Co-Founder",
+    "image": "./Alex.avif",
+    "bio": "Creativo e innovativo, Alexandru sviluppa strategie di marketing che amplificano la visione di Aletheia e la connettono con il mondo.",
+    "email": "alexandergt2002@gmail.com",
+    "phone": "",
+    "social": {
+      "linkedin": "https://www.linkedin.com/in/alexandru-zaharia-4565a0304/",
+      "github": "https://github.com/darkmodeftw"
+    },
+    "skills": [
+      "Digital Marketing",
+      "Brand Strategy",
+      "Content Creation",
+      "Market Analysis"
+    ]
+  }
+]
