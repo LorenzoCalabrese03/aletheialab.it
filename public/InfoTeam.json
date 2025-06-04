@@ -23,18 +23,19 @@
     "name": "Francesco Conforti",
     "role": " Co-Founder",
     "image": "./Francesco.avif",
-    "bio": "Esperto tecnologico con una profonda conoscenza delle ultime innovazioni, Francesco supervisiona tutti gli aspetti tecnici dei nostri progetti.",
-    "email": "",
+    "bio": "Esperto tecnologico con focus su DevOps, CI/CD e automazione, Francesco supervisiona infrastrutture server scalabili, pipeline GitHub e ambienti containerizzati con Docker.",
+    "email": "me@checcoconf.it",
     "phone": "",
     "social": {
       "linkedin": "https://www.linkedin.com/in/confortifrancesco/",
       "github": "https://github.com/checcoconf"
     },
     "skills": [
+      "DevOps",
+      "Embedded Engineer",
       "Architettura Software",
-      "AI",
       "Cloud Computing",
-      "DevOps"
+      "AI"
     ]
   },
   {
