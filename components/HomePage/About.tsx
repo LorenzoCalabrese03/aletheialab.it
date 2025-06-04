@@ -70,7 +70,7 @@ export default function About() {
             viewport={{ once: true }}
           >
             <Image
-              src="/Schermata_Base.png"
+              src={"/Logo_trasparente.png"}
               alt="Logo Trasparente"
               height={600}
               width={600}
@@ -129,7 +129,7 @@ export default function About() {
                   whileHover={{ scale: 1.1, rotate: -5 }}
                   className="text-4xl font-bold text-primary text-custom-blue"
                 >
-                  <CountUp end={50} />+
+                  <CountUp end={7} />+
                 </motion.div>
                 <p className="text-sm text-muted-foreground mt-2 text-custom-grigio">
                   Progetti Completati
@@ -141,7 +141,7 @@ export default function About() {
                   whileHover={{ scale: 1.1, rotate: -5 }}
                   className="text-4xl font-bold text-primary text-custom-blue"
                 >
-                  <CountUp end={2} />+
+                  <CountUp end={7} />+
                 </motion.div>
                 <p className="text-sm text-muted-foreground mt-2 text-custom-grigio">
                   Clienti Soddisfatti
@@ -153,7 +153,7 @@ export default function About() {
                   whileHover={{ scale: 1.1, rotate: -5 }}
                   className="text-4xl font-bold text-primary text-custom-blue"
                 >
-                  <CountUp end={10} />+
+                  <CountUp end={4} />+
                 </motion.div>
                 <p className="text-sm text-muted-foreground mt-2 text-custom-grigio">
                   Esperti nel Team
@@ -165,7 +165,7 @@ export default function About() {
                   whileHover={{ scale: 1.1, rotate: -5 }}
                   className="text-4xl font-bold text-primary text-custom-blue "
                 >
-                  <CountUp end={5} />+
+                  <CountUp end={2} />+
                 </motion.div>
                 <p className="text-sm text-muted-foreground mt-2 text-custom-grigio">
                   Anni di Esperienza

@@ -111,14 +111,15 @@ export function Organigramma() {
                                             {/* Foto */}
                                             <div
                                                 className="h-2/3 bg-cover bg-center rounded-t-2xl"
-                                                style={{ backgroundImage: "url('Logo_trasparente.png')" }}
+                                                style={{ backgroundImage: `url(${member.image})` }}
                                             />
+
                                             {/* Informazioni di base */}
                                             <div className="h-1/3 bg-white flex flex-col justify-center items-center px-4 rounded-b-2xl">
                                                 <h2 className="text-xl font-bold text-black">{member.name}</h2>
                                                 <h3 className="text-sm text-[#17283a] mt-1">{member.role}</h3>
                                                 <button
-                                                    className="mt-3 text-sm text-blue-600 hover:underline"
+                                                    className="mt-3 text-sm text-blue-600 hover:underline cursor-pointer"
                                                     onClick={() => setIsFlipped(index)} // ✅ GIUSTO: imposta l'indice corrente
                                                 >
                                                     Scopri di più
@@ -132,7 +133,7 @@ export function Organigramma() {
                                             {/* Bottone torna indietro */}
                                             <div className="flex justify-end p-3">
                                                 <button
-                                                    className="text-blue-600 text-sm hover:underline"
+                                                    className="text-blue-600 text-sm hover:underline cursor-pointer"
                                                     onClick={() => setIsFlipped(null)} // ✅ GIUSTO: azzera lo stato per tornare al front
                                                 >
                                                     Torna indietro
@@ -171,20 +172,21 @@ export function Organigramma() {
             {infoMobile && selectedMember && (
                 <div
                     className="fixed inset-0 bg-black flex items-center justify-center z-50"
-                    onClick={() => setInfoMobile(false)}
+
                 >
                     {/* Sfondo semi-trasparente con immagine */}
                     <div
-                        className="absolute inset-0 bg-[url('/Logo_trasparente.png')] bg-center bg-cover opacity-20"
+                        className="absolute inset-0 bg-center bg-cover opacity-20"
+                        style={{ backgroundImage: `url(${selectedMember.image})` }}
+
                         aria-hidden="true"
                     />
 
+
                     {/* Contenuto vero sopra */}
-                    <div
-                        className="relative z-10 max-w-md p-6 h-full rounded-lg shadow-lg"
-                        onClick={(e) => e.stopPropagation()}
-                    >
-                        {/* Pulsante per chiudere */}
+                    <div className="relative z-10 max-w-md p-6 h-full rounded-lg shadow-lg flex flex-col justify-center items-center">
+
+                    {/* Pulsante per chiudere */}
                         <button
                             onClick={() => setInfoMobile(false)}
                             className="absolute top-3 right-3 text-white hover:text-blue-400 cursor-pointer text-xl"
@@ -193,10 +195,7 @@ export function Organigramma() {
                         </button>
 
                         <div className="flex flex-col items-center text-center">
-                            <div
-                                className="w-24 h-24 bg-white rounded-full mb-4 bg-cover bg-center"
-                                style={{ backgroundImage: "url('Logo_trasparente.png')" }}
-                            />
+
                             <h2 className="text-xl font-semibold text-white">{selectedMember.name}</h2>
                             <h3 className="text-sm text-white mb-3">{selectedMember.role}</h3>
                             <p className="text-sm text-white mb-4">{selectedMember.bio}</p>

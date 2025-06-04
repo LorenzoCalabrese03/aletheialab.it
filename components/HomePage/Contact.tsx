@@ -55,23 +55,36 @@ export default function Contact() {
                         <MapPin className="h-6 w-6 text-primary" />
                         <div>
                             <h3 className="text-lg font-semibold">Indirizzo</h3>
-                            <p className="text-muted-foreground">{infoLab?.indirizzo}</p>
+                            <a
+                                href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(infoLab?.indirizzo ?? "")}`}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                            >
+                                <p className="text-muted-foreground hover:underline cursor-pointer hover:text-custom-blue">
+                                    {infoLab?.indirizzo}
+                                </p>
+                            </a>
+
+
+
                         </div>
                     </div>
                     <div className="flex gap-4">
                         <Mail className="h-6 w-6 text-primary" />
                         <div>
                             <h3 className="text-lg font-semibold">Email</h3>
+                            <a href={`mailto:${infoLab?.email}`} className="text-sm  hover:underline hover:text-custom-blue">
                             <p className="text-muted-foreground">{infoLab?.email}</p>
+                            </a>
                         </div>
                     </div>
-                    <div className="flex gap-4">
-                        <Phone className="h-6 w-6 text-primary" />
-                        <div>
-                            <h3 className="text-lg font-semibold">Telefono</h3>
-                            <p className="text-muted-foreground">+39 123 456 7890</p>
-                        </div>
-                    </div>
+                    {/*<div className="flex gap-4">*/}
+                    {/*    <Phone className="h-6 w-6 text-primary" />*/}
+                    {/*    <div>*/}
+                    {/*        <h3 className="text-lg font-semibold">Telefono</h3>*/}
+                    {/*        <p className="text-muted-foreground">+39 123 456 7890</p>*/}
+                    {/*    </div>*/}
+                    {/*</div>*/}
                 </motion.div>
 
                 {/* Mappa */}
@@ -83,7 +96,7 @@ export default function Contact() {
                 >
                     <div className="rounded-lg border bg-muted h-64 md:h-80 w-full overflow-hidden">
                         <div className="flex items-center justify-center h-full text-muted-foreground">
-                            Mappa interattiva
+                            <img src={"./mappa.png"} alt={"mappa"}/>
                         </div>
                     </div>
                 </motion.div>
@@ -91,46 +104,46 @@ export default function Contact() {
             </div>
 
             {/* Form contatto */}
-            <motion.div
-                initial={{ opacity: 0, y: 40 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8 }}
-                viewport={{ once: true }}
-            >
-                <div className="max-w-5xl mx-auto w-full">
-                    <form className="grid gap-6 md:grid-cols-2">
-                        {/* Campi input */}
-                        <div className="flex flex-col gap-5">
-                            <input
-                                type="text"
-                                placeholder="Nome"
-                                className="w-full px-4 py-3 rounded-md border border-gray-300 bg-background text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
-                            />
-                            <input
-                                type="email"
-                                placeholder="Email"
-                                className="w-full px-4 py-3 rounded-md border border-gray-300 bg-background text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
-                            />
-                            <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
-                                <button
-                                    type="submit"
-                                    className="w-full py-3 px-6 rounded-md bg-gradient-to-r from-blue-600 via-purple-600 to-gray-600 text-white font-semibold transition hover:brightness-110 hover:shadow-[0_0_10px_rgba(99,102,241,0.6)] border border-transparent"
-                                >
-                                    Invia messaggio
-                                </button>
-                            </motion.div>
-                        </div>
+            {/*<motion.div*/}
+            {/*    initial={{ opacity: 0, y: 40 }}*/}
+            {/*    whileInView={{ opacity: 1, y: 0 }}*/}
+            {/*    transition={{ duration: 0.8 }}*/}
+            {/*    viewport={{ once: true }}*/}
+            {/*>*/}
+            {/*    <div className="max-w-5xl mx-auto w-full">*/}
+            {/*        <form className="grid gap-6 md:grid-cols-2">*/}
+            {/*            /!* Campi input *!/*/}
+            {/*            <div className="flex flex-col gap-5">*/}
+            {/*                <input*/}
+            {/*                    type="text"*/}
+            {/*                    placeholder="Nome"*/}
+            {/*                    className="w-full px-4 py-3 rounded-md border border-gray-300 bg-background text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"*/}
+            {/*                />*/}
+            {/*                <input*/}
+            {/*                    type="email"*/}
+            {/*                    placeholder="Email"*/}
+            {/*                    className="w-full px-4 py-3 rounded-md border border-gray-300 bg-background text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"*/}
+            {/*                />*/}
+            {/*                <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>*/}
+            {/*                    <button*/}
+            {/*                        type="submit"*/}
+            {/*                        className="w-full py-3 px-6 rounded-md bg-gradient-to-r from-blue-600 via-purple-600 to-gray-600 text-white font-semibold transition hover:brightness-110 hover:shadow-[0_0_10px_rgba(99,102,241,0.6)] border border-transparent"*/}
+            {/*                    >*/}
+            {/*                        Invia messaggio*/}
+            {/*                    </button>*/}
+            {/*                </motion.div>*/}
+            {/*            </div>*/}
 
-                        {/* Textarea */}
-                        <div className="rounded-lg border border-gray-300 bg-muted h-64">
-              <textarea
-                  placeholder="Messaggio"
-                  className="h-full w-full resize-none p-4 rounded-md bg-transparent text-sm focus:outline-none focus:ring-2 focus:ring-purple-500"
-              ></textarea>
-                        </div>
-                    </form>
-                </div>
-            </motion.div>
+            {/*            /!* Textarea *!/*/}
+            {/*            <div className="rounded-lg border border-gray-300 bg-muted h-64">*/}
+            {/*  <textarea*/}
+            {/*      placeholder="Messaggio"*/}
+            {/*      className="h-full w-full resize-none p-4 rounded-md bg-transparent text-sm focus:outline-none focus:ring-2 focus:ring-purple-500"*/}
+            {/*  ></textarea>*/}
+            {/*            </div>*/}
+            {/*        </form>*/}
+            {/*    </div>*/}
+            {/*</motion.div>*/}
         </div>
     );
 }

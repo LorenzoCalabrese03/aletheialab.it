@@ -31,13 +31,13 @@ export default function HomePage() {
       </AnimatedSection>
 
         {/*Service section*/}
-        <AnimatedSection
-            id="service"
-            delay={1.0}
-            className="bg-muted section-transition"
-        >
-            <></>
-        </AnimatedSection>
+        {/*<AnimatedSection*/}
+        {/*    id="service"*/}
+        {/*    delay={1.0}*/}
+        {/*    className="bg-muted section-transition"*/}
+        {/*>*/}
+        {/*    <></>*/}
+        {/*</AnimatedSection>*/}
 
         {/* Contact section */}
         <AnimatedSection
