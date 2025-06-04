@@ -46,10 +46,10 @@ Ad esempio [Visual Studio Code](https://code.visualstudio.com/) o [IntelliJ](htt
 Docker Compose ti permette di avviare il sito con un singolo comando. È come avere un "ambiente pronto all’uso", senza dover installare manualmente ogni dipendenza.
 
 ```bash
-docker-compose up --build
+docker compose up --build
 ```
 
-Poi apri il browser e vai su:
+Attendi qualche secondo e poi apri il browser andando su:
 
 ```
 http://localhost:3000
@@ -58,9 +58,11 @@ http://localhost:3000
 > ⛔ Vuoi spegnere tutto? Usa:
 >
 > ```bash
-> docker-compose down
+> docker compose down
 > ```
 
+
+> Preseta attenzione se ti richiede di eseguire tutto come amministratore
 ---
 
 ## 🔁 Automazioni con GitHub Actions
