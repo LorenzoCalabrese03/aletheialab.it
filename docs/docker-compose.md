@@ -1,9 +1,11 @@
----
 # 🐳 `docker-compose.yml` – Guida Tecnica
 
 Il file `docker-compose.yml` serve per **orchestrare più container Docker** e facilitarne l’avvio con un singolo comando.
 
-In questo progetto, `docker-compose` gestisce l'applicazione Next.js esposta sulla porta 8080.
+In questo progetto, `docker-compose` gestisce due servizi:
+
+* **Frontend**: l'applicazione **Next.js** esposta sulla porta 3000.
+* **Backend**: il server **FastAPI** esposto sulla porta 8000.
 
 ---
 
@@ -13,25 +15,46 @@ In questo progetto, `docker-compose` gestisce l'applicazione Next.js esposta sul
 
 ```yaml
 services:
-  aletheialab:
-    build: .
-    container_name: aletheialab
+  frontend:
+    build: ./frontend
+    container_name: frontend
     ports:
-      - "8080:3000"
-    restart: always
+      - "3000:3000"
+    restart: unless-stopped
     networks:
       - aletheialab-it
+    command: [ "npm", "start" ]
+
+  backend:
+    build: ./backend
+    container_name: backend
+    ports:
+      - "8000:8000"
+    restart: unless-stopped
+    networks:
+      - aletheialab-it
+    command: [ "uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000", "--proxy-headers" ]
 ```
+
+---
 
 ### 🔍 Spiegazione dettagliata
 
-| Chiave           | Descrizione                                                                  |
-| ---------------- | ---------------------------------------------------------------------------- |
-| `build: .`       | Docker costruisce l'immagine usando il `Dockerfile` nella directory corrente |
-| `container_name` | Nome del container nel sistema Docker                                        |
-| `ports`          | Mappa la porta `3000` interna del container sulla `8080` del tuo host        |
-| `restart`        | `always` fa sì che il container si riavvii automaticamente se si blocca      |
-| `networks`       | Associa il container a una rete Docker personalizzata (`aletheialab-it`)     |
+| Chiave              | Descrizione                                                                           |
+| ------------------- | ------------------------------------------------------------------------------------- |
+| `frontend`          | Definisce il container per il frontend (Next.js)                                      |
+| `build: ./frontend` | Costruisce l'immagine Docker per il frontend dalla cartella `frontend`                |
+| `container_name`    | Nome del container nel sistema Docker                                                 |
+| `ports`             | Mappa la porta `3000` interna del container sulla `3000` del tuo host                 |
+| `restart`           | `unless-stopped` fa sì che il container si riavvii automaticamente se si blocca       |
+| `networks`          | Associa il container alla rete Docker personalizzata (`aletheialab-it`)               |
+| `command`           | Comando da eseguire per avviare il servizio (avvia il server Next.js con `npm start`) |                                                                         |
+| ------------------- | ------------------------------------------------------------------------------------- |
+| `backend`           | Definisce il container per il backend (FastAPI)                                       |
+| `build: ./backend`  | Costruisce l'immagine Docker per il backend dalla cartella `backend`                  |
+| `container_name`    | Nome del container nel sistema Docker                                                 |
+| `ports`             | Mappa la porta `8000` interna del container sulla `8000` del tuo host                 |
+| `command`           | Comando da eseguire per avviare il servizio (avvia il server FastAPI con `uvicorn`)   |
 
 ---
 
@@ -47,8 +70,7 @@ networks:
 📌 **Cosa fa questa rete?**
 
 * Crea una rete virtuale chiamata `aletheialab-it`
-* Utilizza il driver `bridge` (predefinito) per far comunicare i container tra loro
-* È utile se in futuro vorrai aggiungere servizi esterni (es: un database)
+* Utilizza il driver `bridge` (predefinito) per far comunicare i container tra loro, come in questo caso tra backend e frontend
 
 ---
 
@@ -57,21 +79,21 @@ networks:
 Apri il terminale nella cartella del progetto e usa:
 
 ```bash
-docker-compose up --build
+docker compose up -d --build
 ```
 
 ✅ Questo comando:
 
-* Costruisce l'immagine Docker se non esiste
-* Avvia il container con la tua app Next.js
-* Espone l’app su [http://localhost:8080](http://localhost:8080)
+* Costruisce le immagini Docker se non esistono
+* Avvia i container per il frontend e il backend
+* Espone il frontend su [http://localhost:3000](http://localhost:3000) e il backend su [http://localhost:8000](http://localhost:8000)
 
 ---
 
 ## ⏹️ Come fermare tutto
 
 ```bash
-docker-compose down
+docker compose down
 ```
 
 Questo comando:
@@ -82,26 +104,28 @@ Questo comando:
 
 ---
 
-Di seguito il file `Docker-compose`:
+Di seguito il file `docker compose.yml`:
 
 **[docker-compose.yml](../docker-compose.yml)** – Come viene costruita l'immagine Docker.
 
 ---
+
 ## 🛠️ Esempi di personalizzazione
 
 ### Cambiare porta pubblica
 
-Vuoi usare la porta 3000 invece di 8080? Modifica così:
+Vuoi usare la porta 3000 per il backend invece di 8000? Modifica così:
 
 ```yaml
-ports:
-  - "3000:3000"
+backend:
+  ports:
+    - "3000:3000"
 ```
 
 ### Avvio in background (modalità detached)
 
 ```bash
-docker-compose up -d
+docker compose up -d
 ```
 
 ---
@@ -110,5 +134,3 @@ docker-compose up -d
 
 * 📖 [Documentazione Docker Compose](https://docs.docker.com/compose/)
 * 🧰 [Docker CLI cheatsheet](https://dockerlabs.collabnix.com/docker/cheatsheet/)
-
----
