@@ -110,12 +110,12 @@ export default function About() {
           >
             <div className="w-20 h-1 bg-primary "></div>
             <p className="text-muted-foreground md:text-lg text-custom-grigio">
-              Aletheia è una startup innovativa fondata nel 2023 con l'obiettivo
-              di rivoluzionare il modo in cui le aziende affrontano le sfide
+              Aletheia è un gruppo di sviluppo software e hardware innovativa fondata nel 2023 con l'obiettivo
+              di rivoluzionare il mondo dell'informatica e dell'accessibilità digitale, affrontando le sfide
               tecnologiche del futuro.
             </p>
             <p className="mt-4 text-muted-foreground md:text-lg text-custom-grigio">
-              Il nostro team di esperti combina competenze tecniche
+              Il nostro team combina competenze tecniche
               all'avanguardia con una profonda comprensione delle dinamiche di
               business per offrire soluzioni che non solo risolvono problemi, ma
               creano nuove opportunità.

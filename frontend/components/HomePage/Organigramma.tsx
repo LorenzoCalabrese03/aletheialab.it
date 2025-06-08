@@ -17,16 +17,19 @@ export function Organigramma() {
     const [isFlipped, setIsFlipped] = React.useState<number | null>(null);
     const [isMobile, setIsMobile] = useState(false);
 
-    {/* Richiesta API */}
+    {/* Richiesta API */
+    }
     useEffect(() => {
-        fetch("/InfoTeam.json")
+        fetch("http://localhost:8000/api/getJSON?item=InfoTeam")
             .then((response) => {
                 if (!response.ok) {
                     throw new Error(`Errore nel caricamento dei dati: ${response.statusText}`);
                 }
                 return response.json();
             })
-            .then(setTeamMembers)
+            .then((data) => {
+                setTeamMembers(data.infoTeam); // ✅ CORRETTO
+            })
             .catch((error) => {
                 console.error("Errore nel caricamento dei dati:", error);
             });

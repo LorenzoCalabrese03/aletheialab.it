@@ -8,14 +8,16 @@ export default function Contact() {
     const [infoLab, setInfoLab] = useState<InfoLab>();
 
     useEffect(() => {
-        fetch("/InfoLab.json")
+        fetch("http://localhost:8000/api/getJSON?item=InfoLab")
             .then((response) => {
                 if (!response.ok) {
                     throw new Error(`Errore nel caricamento dei dati: ${response.statusText}`);
                 }
                 return response.json();
             })
-            .then(setInfoLab)
+            .then((data) => {
+                setInfoLab(data.infoLab); // ✅ CORRETTO
+            })
             .catch((error) => {
                 console.error("Errore nel caricamento dei dati:", error);
             });
