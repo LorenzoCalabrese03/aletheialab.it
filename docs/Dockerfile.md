@@ -1,11 +1,12 @@
 # 📦 Dockerfile – Guida Tecnica
 
-Il file `Dockerfile` permette di creare un'immagine Docker ottimizzata per eseguire l'applicazione **Next.js** in produzione.
+Il file `Dockerfile` permette di creare un'immagine Docker ottimizzata per eseguire l'applicazione **Next.js** in produzione e per gestire il backend con **FastAPI**.
 
-👉 È suddiviso in **due fasi principali** (multi-stage build):
+👉 È suddiviso in **due fasi principali** (multi-stage build) per il frontend e in un'ulteriore fase per il backend:
 
-1. **Build**: compila l'app e genera gli asset finali.
-2. **Produzione**: esegue solo il necessario, in modo leggero e sicuro.
+1. **Build (Frontend)**: compila l'app di Next.js e genera gli asset finali.
+2. **Produzione (Frontend)**: esegue l'app Next.js in modalità produzione.
+3. **Backend**: crea l'immagine per il backend FastAPI.
 
 ---
 
@@ -13,7 +14,7 @@ Il file `Dockerfile` permette di creare un'immagine Docker ottimizzata per esegu
 
 ---
 
-### 🔨 Fase 1 – Build
+### 🔨 Fase 1 – Build (Frontend)
 
 ```dockerfile
 FROM node:23-alpine AS build
@@ -39,7 +40,7 @@ RUN npm run build
 
 ---
 
-### 🚀 Fase 2 – Produzione
+### 🚀 Fase 2 – Produzione (Frontend)
 
 ```dockerfile
 FROM node:23-alpine AS runner
@@ -77,26 +78,77 @@ CMD ["npm", "start"]
 
 ---
 
-Di seguito il file `Dockerfile`:
+### 🐍 Backend Dockerfile (FastAPI)
 
-**[Dockerfile](../Dockerfile)** – Come viene costruita l'immagine Docker.
+```dockerfile
+# Usa l'immagine ufficiale di Python come base
+FROM python:3.13-slim
+
+# Aggiorna pip alla versione più recente
+RUN python -m pip install --upgrade pip
+
+# Imposta il working directory all'interno del contenitore
+WORKDIR /backend
+
+# Copia i file di dipendenze nel contenitore
+COPY requirements.txt .
+
+# Aggiorna tutte le librerie alla versione più recente e installa quelle elencate in requirements.txt
+RUN pip install --no-cache-dir --upgrade -r requirements.txt
+
+# Copia il codice sorgente nel contenitore
+COPY . .
+
+# Espone la porta su cui FastAPI gira
+EXPOSE 8000
+
+# Comando per avviare il server di FastAPI
+CMD ["uvicorn", "app.main:app", "127.0.0.1", "--port", "8000"]
+```
+
+📌 **Spiegazione:**
+
+* `FROM python:3.13-slim`: usa un'immagine leggera di Python 3.13 basata su Debian slim.
+* `RUN python -m pip install --upgrade pip`: aggiorna `pip` alla versione più recente.
+* `WORKDIR /backend`: imposta la cartella di lavoro all'interno del contenitore.
+* `COPY requirements.txt .`: copia il file `requirements.txt` nel contenitore per l'installazione delle dipendenze.
+* `RUN pip install --no-cache-dir --upgrade -r requirements.txt`: installa le dipendenze Python necessarie per FastAPI.
+* `COPY . .`: copia il codice sorgente dell'applicazione nel contenitore.
+* `EXPOSE 8000`: espone la porta 8000, la porta predefinita su cui FastAPI è in esecuzione.
+* `CMD ["uvicorn", "app.main:app", "127.0.0.1", "--port", "8000"]`: avvia il server FastAPI usando `uvicorn`.
+
+🎯 **Scopo del Dockerfile del backend:**
+
+* Fornire un ambiente di esecuzione isolato per il backend basato su FastAPI.
+* Installare tutte le dipendenze necessarie per il funzionamento di FastAPI.
+* Avviare il server di FastAPI sulla porta 8000.
 
 ---
 
 ## 🛠️ Personalizzazioni comuni
 
-Se si desidera apportare delle modifiche al file, queste sono le più comuni:
+Se desideri apportare delle modifiche al file, queste sono le più comuni:
 
-### Cambiare versione di Node.js
+### Cambiare versione di Node.js (Frontend)
 
 ```dockerfile
 FROM node:20-alpine AS build
 ```
 
-### Aggiungere pacchetti di sistema (es. `sharp`)
+### Cambiare versione di Python (Backend)
+
+Se desideri cambiare la versione di Python, puoi farlo modificando la base dell'immagine:
 
 ```dockerfile
-RUN apk add --no-cache libc6-compat
+FROM python:3.10-slim
+```
+
+### Aggiungere dipendenze Python (Backend)
+
+Per aggiungere librerie o pacchetti di sistema nel backend, puoi usare il comando `RUN`:
+
+```dockerfile
+RUN apt-get update && apt-get install -y libpq-dev
 ```
 
 ---
@@ -106,3 +158,5 @@ RUN apk add --no-cache libc6-compat
 * 📘 [Guida Dockerfile (Ufficiale)](https://docs.docker.com/engine/reference/builder/)
 * 🧱 [Multi-stage builds](https://docs.docker.com/develop/develop-images/multistage-build/)
 * 🐳 [Node.js su Docker Hub](https://hub.docker.com/_/node)
+* 🐍 [FastAPI su Docker](https://fastapi.tiangolo.com/deployment/docker/)
+* 📦 [Python su Docker Hub](https://hub.docker.com/_/python)
