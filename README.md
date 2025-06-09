@@ -55,7 +55,7 @@ Puoi utilizzare editor come [Visual Studio Code](https://code.visualstudio.com/)
 Docker Compose ti permette di avviare il sito con un singolo comando, creando un "ambiente pronto all'uso" senza la necessità di installare manualmente ogni dipendenza.
 
 ```bash
-docker compose up --build
+docker compose up -d --build
 ```
 
 Attendi qualche secondo e poi apri il browser su:
