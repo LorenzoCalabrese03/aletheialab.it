@@ -20,4 +20,4 @@ COPY . .
 EXPOSE 8000
 
 # Comando per avviare il server di FastAPI
-CMD ["uvicorn", "app.main:app", "127.0.0.1", "--port", "8000"]
+CMD ["uvicorn", "main:app", "127.0.0.1", "--port", "8000"]
