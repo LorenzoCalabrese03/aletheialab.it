@@ -23,7 +23,7 @@ jobs:
       - name: Rebuild containers
         run: |
             cd ~/evoluzione/aletheialab.it
-            sudo docker compose up -d --build
+            docker compose up -d --build
 
       - name: Pulisci spazio su disco (immagini e volumi inutilizzati)
         run: docker system prune -af --volumes
