@@ -85,7 +85,11 @@ Il file del flusso di lavoro si trova qui:
 ```
 .github/workflows/deploy.yml
 ```
-
+Una volta eseguita, se lo stai eseguendo su VM (Visrtual machine) individua il suo indirizzo ip
+```bash
+ip a
+```
+e recati a quel'indirizzo IP
 Cosa fa:
 
 * 🔧 Compila (build) l'applicazione.
