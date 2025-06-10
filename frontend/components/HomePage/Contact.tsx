@@ -8,7 +8,7 @@ export default function Contact() {
     const [infoLab, setInfoLab] = useState<InfoLab>();
 
     useEffect(() => {
-        fetch("http://localhost:8000/api/getJSON?item=InfoLab")
+        fetch("http://10.0.2.30:8000/api/getJSON?item=InfoLab")
             .then((response) => {
                 if (!response.ok) {
                     throw new Error(`Errore nel caricamento dei dati: ${response.statusText}`);

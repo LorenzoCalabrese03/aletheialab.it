@@ -20,7 +20,7 @@ export function Organigramma() {
     {/* Richiesta API */
     }
     useEffect(() => {
-        fetch("http://localhost:8000/api/getJSON?item=InfoTeam")
+        fetch("http://10.0.2.30:8000/api/getJSON?item=InfoTeam")
             .then((response) => {
                 if (!response.ok) {
                     throw new Error(`Errore nel caricamento dei dati: ${response.statusText}`);
