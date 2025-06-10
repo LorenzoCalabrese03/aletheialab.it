@@ -22,7 +22,7 @@ def get_json(item: str = Query("all", enum=["InfoTeam", "InfoLab", "all"])):
 # CORS config
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:3000"],  # o ["*"] per test
+    allow_origins=["*"],  # o ["*"] per test
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
