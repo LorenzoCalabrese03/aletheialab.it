@@ -9,15 +9,16 @@ Questo progetto utilizza **GitHub Actions** per eseguire un deploy **automatico*
 Ogni volta che invii codice al ramo `main`:
 
 1. GitHub si collega in modo sicuro al tuo server.
-2. Esegue il deploy aggiornando il codice e ricostruendo i container Docker.
-3. Pulisce le risorse inutilizzate per risparmiare spazio.
+2. Esegue il deploy aggiornando il codice, ripulendo eventuali modifiche locali non committate e forzando il pull dell'ultima versione.
+3. Ricostruisce i container Docker aggiornati.
+4. Pulisce le risorse inutilizzate per risparmiare spazio.
 
 ---
 
 ## 🗂️ Struttura del file `deploy.yml`
 
 ```yaml
-name: Deploy su Server Personale (Self-Hosted)
+name: Deploy su Server Casalingo (Self-Hosted)
 ```
 
 > Nome visibile nel pannello Actions di GitHub.
@@ -50,78 +51,52 @@ jobs:
 
 ---
 
-### 🔐 Step 1 – Configurazione SSH
+### ⚙️ Step di deploy dettagliati
 
 ```yaml
-- name: Configura SSH per GitHub
-  run: |
-    mkdir -p ~/.ssh
-    echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_ed25519
-    chmod 600 ~/.ssh/id_ed25519
-    ...
+steps:
+  - name: Checkout
+    uses: actions/checkout@v4
+
+  - name: Force clean local repository before pull
+    run: |
+      cd ~/evoluzione/aletheialab.it
+      git reset --hard HEAD          # Scarta tutte le modifiche locali non committate
+      git clean -fdx                 # Rimuove file e directory non tracciati (anche ignorati)
+
+  - name: Pull latest code (via HTTPS + GitHub token)
+    env:
+      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    run: |
+      cd ~/evoluzione/aletheialab.it
+      git pull https://x-access-token:${GH_TOKEN}@github.com/LorenzoCalabrese03/aletheialab.it.git main
+
+  - name: Rebuild containers
+    run: |
+      cd ~/evoluzione/aletheialab.it
+      docker compose up -d --build
+
+  - name: Pulisci spazio su disco (immagini e volumi inutilizzati)
+    run: docker system prune -af --volumes
+
+  - name: Deploy completed
+    run: echo "Deploy completed on aletheialab server."
 ```
 
-> Crea una chiave SSH temporanea sul server, usando una chiave privata salvata nei **GitHub Secrets**. Serve per **scaricare il codice da GitHub in modo sicuro**.
+> Questo flusso garantisce che eventuali modifiche locali indesiderate vengano rimosse, evitando conflitti durante il pull.
+> L'autenticazione avviene tramite il token GitHub (`GITHUB_TOKEN`), quindi non è più necessaria la configurazione di chiavi SSH per scaricare il codice.
 
 ---
-
-### ✅ Step 2 – Autorizzazione Git
-
-```yaml
-- name: Imposta la directory Git come sicura
-  run: git config --global --add safe.directory /home/aletheialab/aletheialab-app
-```
-
-> Alcune versioni di Git richiedono di dichiarare esplicitamente la directory come “sicura” per evitare errori.
-
----
-
-### 🚀 Step 3 – Deploy con Docker Compose
-
-```yaml
-- name: Esegui il deploy con Docker Compose
-  run: |
-    cd /home/aletheialab/aletheialab-app
-    git fetch origin
-    git reset --hard origin/main
-    docker compose pull
-    docker compose up -d --build
-```
-
-> Scarica l'ultima versione del codice e ricostruisce l’immagine con Docker.
-
-* `pull`: scarica eventuali immagini aggiornate.
-* `up -d --build`: ricrea i container aggiornati in background.
-
----
-
-### 🧹 Step 4 – Pulizia
-
-```yaml
-- name: Pulisci spazio su disco
-  run: docker system prune -af --volumes
-```
-
-> Elimina immagini Docker, container e volumi non più utilizzati per **liberare spazio**.
-
----
-
-Di seguito il file `github-actions.yml`:
-
-**[github-actions.yml](../.github/workflows/deploy.yml)** – Come viene gestito il github-actions.
-
----
-
 
 ## 🔐 Come impostare i Secret
 
-Vai su **Settings → Secrets → Actions** nel tuo repo e crea:
+### Per l’attuale workflow:
 
-| Nome              | Contenuto                                      |
-| ----------------- | ---------------------------------------------- |
-| `SSH_PRIVATE_KEY` | La tua chiave privata (usata per clonare repo) |
+| Nome           | Contenuto                                                            |
+| -------------- | -------------------------------------------------------------------- |
+| `GITHUB_TOKEN` | Token GitHub predefinito (automaticamente fornito da GitHub Actions) |
 
-> ⚠️ **Non condividere mai** la chiave privata con nessuno.
+> Non è più necessario impostare la chiave SSH privata per l'accesso Git, dato che il pull avviene via HTTPS con token.
 
 ---
 
@@ -129,7 +104,7 @@ Vai su **Settings → Secrets → Actions** nel tuo repo e crea:
 
 Puoi anche avviare il workflow manualmente da GitHub cliccando su:
 
-📁 Repository → **Actions** → `Deploy su Server Personale` → **Run workflow**
+📁 Repository → **Actions** → `Deploy su Server Casalingo` → **Run workflow**
 
 ---
 
@@ -140,5 +115,3 @@ Puoi anche avviare il workflow manualmente da GitHub cliccando su:
 * [Self-hosted runners](https://docs.github.com/en/actions/hosting-your-own-runners/about-self-hosted-runners)
 
 ---
-
-Vuoi che ti aiuti anche a redigere una guida **per configurare un runner self-hosted** da zero sul tuo server?
