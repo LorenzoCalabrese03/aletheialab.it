@@ -18,7 +18,7 @@ jobs:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # 🔐 Usa il token integrato per autenticarsi
         run: |
             cd ~/evoluzione/aletheialab.it
-            git pull https://x-access-token:${GH_TOKEN}@github.com/LorenzoCalabrese03/aletheialab.it.git main
+            git pull --force https://x-access-token:${GH_TOKEN}@github.com/LorenzoCalabrese03/aletheialab.it.git main
 
       - name: Rebuild containers
         run: |
