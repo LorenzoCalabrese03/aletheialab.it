@@ -1,4 +1,4 @@
-# Fase 1: Build
+
 FROM node:23-alpine AS build
 
 WORKDIR /app
