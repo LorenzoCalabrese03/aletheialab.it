@@ -50,65 +50,81 @@ Puoi utilizzare editor come [Visual Studio Code](https://code.visualstudio.com/)
 
 ---
 
-## 🐳 Avviare il progetto con Docker Compose
+## 🚦 Modalità di avvio disponibili
 
-Docker Compose ti permette di avviare il sito con un singolo comando, creando un "ambiente pronto all'uso" senza la necessità di installare manualmente ogni dipendenza.
+Sono state ideati tre modalità differetni per eseguire l'applicazione **Aletheia**, a seconda delle tue necessità:
+
+1. **Con Docker Compose** – Per esecuzione locale in un ambiente isolato.
+2. **Su Virtual Machine** – Per deploy e test automatici sfruttando le capacità di GitHub Actions.
+3. **Manuale con Node.js** – Per sviluppo rapido o debugging.
+
+---
+
+## 🐳 1. Avvio con Docker Compose (ambiente locale)
+
+Docker Compose ti permette di avviare il sito con un singolo comando da eseguire nella route del progetto:
 
 ```bash
 docker compose up -d --build
 ```
 
-Attendi qualche secondo e poi apri il browser su:
+Una volta completato, visita:
 
 ```
 http://localhost:3000
 ```
 
-> ⛔ Vuoi spegnere tutto? Usa:
+Per fermare l’applicazione:
 
 ```bash
 docker compose down
 ```
 
-> **Nota:** Fai attenzione se ti viene chiesto di eseguire come amministratore.
+> **Nota:** Alcune operazioni potrebbero richiedere privilegi di amministratore.
 
 ---
 
-## 🔁 Automazioni con GitHub Actions
+## ⚙️ 2. Avvio su Virtual Machine (per praticare GitHub Actions)
 
-Questo progetto usa **GitHub Actions** per automatizzare il flusso di lavoro ogni volta che viene inviato codice al branch `main`.
-
-> In questo contesto, viene utilizzato per aggiornare automaticamente il server privato.
-
-Il file del flusso di lavoro si trova qui:
+Quando il codice viene inviato al branch `main`, GitHub Actions riceve un trigger che fa partire un workflow automaticamente, presente nel file di configurazione:
 
 ```
 .github/workflows/deploy.yml
 ```
-Una volta eseguita, se lo stai eseguendo su VM (Visrtual machine) individua il suo indirizzo ip
+
+Se stai testando il progetto su una tua VM, puoi ottenere l'indirizzo IP della macchina con:
+
 ```bash
 ip a
 ```
-e recati a quel'indirizzo IP
-Cosa fa:
 
-* 🔧 Compila (build) l'applicazione.
-* 🚀 La pubblica (deploy) in produzione.
+Poi visita:
 
-> ✨ Questo rende il progetto sempre aggiornato automaticamente!
+```
+http://[IP-DELLA-VM]:3000
+```
+
+> ✨ Questo processo garantisce che il sito sia sempre aggiornato automaticamente!
 
 ---
 
-## 🧑‍💻 Avvio locale (senza Docker)
+## 🧑‍💻 3. Avvio manuale (senza Docker)
 
-Se vuoi eseguire il progetto manualmente senza Docker (ad esempio per modifiche rapide), segui questi passaggi:
+Per eseguire il progetto localmente in modo manuale (utile per modifiche rapide), segui questi passaggi:
 
 ```bash
 npm install
 npm run dev
 ```
 
-Oppure, se preferisci altri strumenti di gestione pacchetti:
+per avviare la build ed eseguirlo, digita:
+
+```bash
+npm run build
+npm run start
+```
+
+Oppure, con un altro package manager:
 
 ```bash
 # Con yarn
@@ -124,7 +140,11 @@ bun install
 bun dev
 ```
 
-Una volta avviato, apri il browser su `http://localhost:3000`.
+Una volta avviato, visita:
+
+```
+http://localhost:3000
+```
 
 ---
 
@@ -133,8 +153,8 @@ Una volta avviato, apri il browser su `http://localhost:3000`.
 Vuoi adattare il sito alle tue esigenze? Ecco come iniziare:
 
 1. Esplora la cartella `app/` per vedere le pagine e i componenti principali.
-2. Modifica i file `.jsx` o `.ts` per cambiare contenuti o stili.
-3. Se aggiungi nuove librerie, ricorda di eseguire nuovamente:
+2. Modifica i file `.jsx` o `.tsx` per cambiare contenuti o stili.
+3. Se aggiungi nuove librerie, ricorda di eseguire:
 
 ```bash
 docker compose build
@@ -180,4 +200,3 @@ Abbiamo preparato delle guide per aiutarti a comprendere ogni parte tecnica del 
 Trovi questi file nella cartella [`docs/`](docs/).
 
 ---
-
