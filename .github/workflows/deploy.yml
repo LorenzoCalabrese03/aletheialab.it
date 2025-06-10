@@ -13,17 +13,25 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      # QUESTO È PASSO CHE CANCELLA TUTTI I CAMBIAMENTI LOCALI E PRENDE SOLO LE PULL
+      - name: Force clean local repository before pull
+        run: |
+          cd ~/evoluzione/aletheialab.it
+          git reset --hard HEAD          # Scarta tutte le modifiche locali non committate
+          git clean -fdx                 # Rimuove tutti i file e le directory non tracciate (anche quelle ignorate)
+
       - name: Pull latest code (via HTTPS + GitHub token)
         env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # 🔐 Usa il token integrato per autenticarsi
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-            cd ~/evoluzione/aletheialab.it
-            git pull --force https://x-access-token:${GH_TOKEN}@github.com/LorenzoCalabrese03/aletheialab.it.git main
+          cd ~/evoluzione/aletheialab.it
+          # Dopo il reset e clean, questo pull dovrebbe ora funzionare senza problemi di sovrascrittura
+          git pull https://x-access-token:${GH_TOKEN}@github.com/LorenzoCalabrese03/aletheialab.it.git main
 
       - name: Rebuild containers
         run: |
-            cd ~/evoluzione/aletheialab.it
-            docker compose up -d --build
+          cd ~/evoluzione/aletheialab.it
+          docker compose up -d --build
 
       - name: Pulisci spazio su disco (immagini e volumi inutilizzati)
         run: docker system prune -af --volumes
