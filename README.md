@@ -8,7 +8,7 @@ Questo progetto è costruito con:
 * [Docker](https://www.docker.com/) – Per creare ambienti di sviluppo isolati e replicabili.
 * [Node.js](https://nodejs.org/) – Runtime per eseguire JavaScript lato server.
 * [GitHub Actions](https://github.com/features/actions) – Per automatizzare test, build e deploy.
-
+* [Python](https://www.python.org/) - Per il Backend e l'estrazione dei dati.
 ---
 
 ## ✅ Requisiti di base
