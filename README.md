@@ -15,10 +15,11 @@ Questo progetto è costruito con:
 
 Per seguire questo progetto sul tuo computer, assicurati di avere installato i seguenti strumenti:
 
-* 🐳 **Docker** – Serve a "contenere" l'applicazione in un ambiente isolato.
-* 🧩 **Docker Compose** – Per avviare più servizi con un solo comando.
-* 🟢 **Node.js** – Necessario per installare dipendenze e avviare lo sviluppo locale.
-* 🧬 **Git** – Per clonare il progetto e contribuire al codice.
+- 🐳 Docker – Serve a "contenere" l'applicazione in un ambiente isolato.
+- 🧩 Docker Compose – Per avviare più servizi con un solo comando.
+- 🟢 Node.js – Necessario per installare dipendenze e avviare lo sviluppo locale.
+- 🧬 Git – Per clonare il progetto e contribuire al codice.
+- 🐍 Python – Utilizzato per script, automazioni o servizi backend (verifica la versione richiesta nel progetto).
 
 > 🔍 Suggerimento: Se stai usando **Docker Desktop**, Docker Compose è già incluso!
 
